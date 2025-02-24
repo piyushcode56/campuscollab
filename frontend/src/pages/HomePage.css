@@ -1,0 +1,62 @@
+.homepage{
+    width: 85%;
+    margin: 100px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+}
+.homepage_first_component{
+    width: 50%;
+    margin: 10px auto;
+}
+.homepage_first_section{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.homepage_first_section h1{
+    color: cyan;
+    font-size: 30px;
+    font-weight: 900;
+}
+.homepage_first_section p{
+    color: rgb(233, 232, 232);
+    font-weight: 800;
+    font-size: 18px;
+}
+
+.homepage_first_project_section{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    
+}
+.homepage_first_project_section button{
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s ease;
+    
+}
+.homepage_first_project_section button:hover{
+    background-color: #1e3a8a;
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(59, 130, 246, 0.5);
+}
+
+.latest-projects{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+.projects i{
+    font-size: 25px;
+}

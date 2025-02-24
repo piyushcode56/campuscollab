@@ -1,0 +1,39 @@
+nav{
+    position: fixed;
+    display: flex;
+    justify-content: space-around;
+    height: 60px;
+    align-items: center;
+    background-color: #00000f;
+    border-bottom: 1px solid white;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: 0.7s ease;
+}
+.navbar.scrolled{
+    background-color: #201f54;
+}
+.navbar_second_section ul{
+    display: flex;
+    gap: 20px;
+}
+.navbar_second_section a:hover{
+    text-decoration: 1px solid rgb(64, 255, 0) underline;
+
+}
+.navbar_third_section button{
+    background-color: #8c0307;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    color: white;
+}
+.navbar_third_section button:hover{
+    background-color: #5c0204;
+}
+.admin-class a{
+    display: none;
+}

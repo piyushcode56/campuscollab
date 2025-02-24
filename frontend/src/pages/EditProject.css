@@ -1,0 +1,70 @@
+.edit-project-page{
+    width: 80%;
+    margin: 100px auto;
+}
+.edit-project-page form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    
+}
+.edit-project-details{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.edit-project-details input, textarea, select{
+    padding: 10px;
+    width: 100%;
+}
+.edit-project-media{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    
+}
+.edit-project-image, .edit-project-video, .edit-project-document{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 3px dashed blue;
+    padding: 30px;
+    border-radius: 5px;
+    text-align: center;
+}
+.edit-project-image p, .edit-project-video p, .edit-project-document p{
+    color: rgb(12, 226, 12);
+}
+.edit-project-upload input::-webkit-file-upload-button{
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: blue;
+    color: white;
+    border: none;
+    font-size: 16px;
+}
+
+.images img, .videos video{
+    width: 150px;
+    height: 150px;
+}
+
+.edit-otherLinks input{
+    width: 100%;
+    padding: 10px;
+}
+
+.update-button button{
+    padding: 10px;
+    background-color: rgb(31, 31, 248);
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+    transition: 0.3s ease;
+}
+.update-button button:hover{
+    background-color: blue;
+}

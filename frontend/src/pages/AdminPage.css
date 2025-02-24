@@ -1,0 +1,56 @@
+.admin-page{
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+}
+.admin-dashboard{
+    width: 25%;
+    background-color: rgb(39, 38, 38);
+    border: 2px solid white;
+}
+.admin-section{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.admin-section a{
+    color: greenyellow;
+    font-size: 20px;
+}
+.admin-section a:hover{
+    color: blue;
+}
+.admin-section hr{
+    width: 100%;
+}
+.admin-section img{
+    width: 100px;
+}
+.all-users, .all-projects, .dashboard{
+    display: flex;
+    gap: 10px;
+}
+.admin-image img{
+    width: 600px;
+}
+.admin-main-content{
+    width: 70%;
+    margin-top: 100px;
+}
+.admin-section i{
+    visibility: hidden;
+}
+
+.admin-section div:hover i{
+    visibility: visible;
+}
+.admin-section a:hover{
+    color: blue;
+    text-decoration: underline;
+}
+

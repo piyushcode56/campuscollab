@@ -1,0 +1,38 @@
+.footer-component{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: black;
+    border-top: 2px solid gold;
+    padding: 20px;
+    position: relative;
+    height: 100%;
+    margin-top: 40%;
+}
+.footer-first-section img{
+    width: 200px;
+    border-radius: 10px;
+}
+
+.footer-second-section{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: cyan;
+}
+.footer-second-section a:hover{
+    color: cyan;
+}
+.footer-third-section{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.follow-us-links{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.follow-us-links a:hover{
+    color: cyan;
+}

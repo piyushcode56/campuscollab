@@ -1,0 +1,9 @@
+.userid-based-projects{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #0e102b;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid white;
+}

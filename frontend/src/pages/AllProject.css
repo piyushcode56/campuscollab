@@ -1,0 +1,51 @@
+.all-users-projects-page{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.all-users-projects-page-section{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.all-users-projects{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    background-color: rgba(0,0,0,0.6);
+    padding: 20px;
+    border-radius: 5px;
+    text-decoration: underline;
+}
+.search-user-projects{
+    display: flex;
+}
+.search-user-projects input{
+    width: 90%;
+    padding: 10px;
+    font-size: 16px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border: none;
+    
+}
+.search-user-projects button{
+    padding: 10px;
+    width: 7%;
+    border: none;
+    background-color: blue;
+    cursor: pointer;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-size: 16px;
+}
+.search-user-projects button:hover{
+    background-color: rgb(1, 29, 1);
+    color: white;
+    
+}
+.search-projects-domain-filter select{
+    width: 50%;
+    padding: 10px;
+    border-radius: 5px;
+}
