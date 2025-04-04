@@ -381,7 +381,7 @@ const EditProject = () => {
     &&
     previousImages.map((prevImage) => {
         const parsedUrl = prevImage.fileUrl.replace(/\\/g, '/').replace(/^uploads\//, '');
-        const imageUrl = `http://localhost:8000/uploads/${parsedUrl}`;
+        const imageUrl = `https://campuscollab-backend.onrender.com/uploads/${parsedUrl}`;
         return <div className="images">
             <img width={200} src={imageUrl} alt="Uploaded Image" />
           <i
@@ -418,7 +418,7 @@ const EditProject = () => {
                     &&
                     previousVideos.map((prevVideo) => {
                         const parsedUrl = prevVideo.fileUrl.replace(/\\/g, '/').replace(/^uploads\//, '');
-                        const videoUrl = `http://localhost:8000/uploads/${parsedUrl}`;
+                        const videoUrl = `https://campuscollab-backend.onrender.com/uploads/${parsedUrl}`;
                 
                         return <div className="videos">
                             <video width={200} src={videoUrl} alt="Uploaded Image" />
@@ -457,7 +457,7 @@ const EditProject = () => {
                 &&
                 previousDocuments.map((prevDocument) => {
                     const parsedUrl = prevDocument.fileUrl.replace(/\\/g, '/').replace(/^uploads\//, '');
-                    const documentUrl = `http://localhost:8000/uploads/${parsedUrl}`;
+                    const documentUrl = `https://campuscollab-backend.onrender.com/uploads/${parsedUrl}`;
                     return <div className="documents">
                         <a href={documentUrl}>{prevDocument.fileName}</a>
                       <i
