@@ -238,7 +238,7 @@ const AddProject = () => {
 
       
       
-      const url = 'http://localhost:8000/projects/uploads';
+      const url = 'https://campuscollab-backend.onrender.com/projects/uploads';
       const response = await fetch(url, {
         method:'POST',
         headers:{
