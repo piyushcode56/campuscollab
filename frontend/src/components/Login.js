@@ -30,7 +30,7 @@ const Login = () => {
         e.preventDefault();
 
         try{
-            const url = 'https://campuscollab.onrender.com/user/login';
+            const url = 'https://campuscollab-backend.onrender.com/user/login';
             const response = await fetch(url, {
                 method:'POST',
                 headers:{
