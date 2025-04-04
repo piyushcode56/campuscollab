@@ -4,7 +4,7 @@ import campuscollabImage from '../assets/campuscollab3.jpeg';
 import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
-    <div className='footer-component'>
+    <div className='footer-component' style={{marginTop:'50%'}}>
         <div className="footer-first-section">
           <img src={campuscollabImage} alt="" />
         </div>

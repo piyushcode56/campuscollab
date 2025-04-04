@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import { useRef } from 'react';
 import './AddProject.css';
 import { handleSuccess, handleError } from '../Utils';
 import { ToastContainer } from 'react-toastify';
+import { useRef } from 'react';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 const AddProject = () => {
-
-  const fileInputRef = useRef(null);
+  const navigate = useNavigate();
+  const fileInputRef = useRef();
+  const imageRef = useRef(null);
+  const videoRef = useRef(null);
+  const documentRef = useRef(null);
   const [teamDevelopers, setTeamDevelopers] = useState(false);
   const [images, setImages] = useState([]);
   const [videos, setVideos] = useState([]);
@@ -14,6 +19,7 @@ const AddProject = () => {
   const [modalType, setModalType] = useState();
   const [modalContent, setModalContent] = useState();
   const userid = localStorage.getItem('userId');
+  const [loading, setLoading] = useState(false);
   const [projectData, setProjectData] = useState({
       name:'',
       domain:'',
@@ -76,7 +82,7 @@ const AddProject = () => {
       })
     }
   }
-  const onFileSelect = (e) => {
+  const onImageSelect = (e) => {
     const files = e.target.files;
 
     if(files.length === 0) {
@@ -84,6 +90,10 @@ const AddProject = () => {
     }
 
     for(let i=0; i<files.length; i++){
+      if(files[i].type.split('/')[0] !== 'image'){
+        imageRef.current.value = "";
+        return alert("Upload only images")
+      }
       if(files[i].type.split('/')[0] === 'image'){
         if(!images.some((e)=>e.name === files[i].name)){
           setImages((prevImages) => [
@@ -97,6 +107,21 @@ const AddProject = () => {
             }
           ])
         }
+      }
+    }
+    
+  }
+
+  const onVideoSelect = (e)=>{
+    const files = e.target.files;
+    
+    if(files.length === 0){
+      return;
+    }
+    for(let i=0; i<files.length; i++){
+      if(files[i].type.split('/')[0] !== 'video'){
+        videoRef.current.value = "";
+        return alert("Upload only videos");
       }
       if(files[i].type.split('/')[0] === 'video'){
         if(!videos.some((e) => e.name === files[i].name)){
@@ -113,6 +138,7 @@ const AddProject = () => {
         }
       }
     }
+
   }
 
   const onDocumentSelect = (e)=> {
@@ -129,7 +155,15 @@ const AddProject = () => {
     ]
     for(let i=0; i<files.length; i++){
        const file = files[i];
-
+       
+      if(file.type.split('/')[0] === 'image' || file.type.split('/')[0] === 'video'){
+        documentRef.current.value = "";
+        return alert("Upload only documents");
+      }
+      if(!allowedFileTypes.includes(file.type)){
+         alert("This document type is not supported");
+        documentRef.current.value = "";
+      }
        if(allowedFileTypes.includes(file.type)){
           setDocuments((prevDocuments) => [
             ...prevDocuments,
@@ -147,6 +181,7 @@ const AddProject = () => {
   console.log(projectData.developer3);
   const handleProjectSubmit = async(e)=>{
     e.preventDefault();
+    setLoading(true);
     console.log('button is pressed');
     try{
       const formData = new FormData();
@@ -177,6 +212,7 @@ const AddProject = () => {
         formData.append('files', document.file)
       })
       formData.append('image', image.file)
+      
       // const files = [
       //   ...images.map((image) => ({
       //     fileName:image.name,
@@ -212,29 +248,22 @@ const AddProject = () => {
         body:formData
       })
       const result = await response.json();
-      console.log(result);
+      
       const {success, error, message} = result;
       if(success){
-        handleSuccess(success);
-        setProjectData({
-          name:'',
-          domain:'',
-          developer:'',
-          introduction:'',
-          developers:{
-            developer1:'',
-            developer2:'',
-            developer3:'',
-            developer4:'',
-            developer5:''
-          },
-          description:'',
-          otherLinks:''
-          })
-          setImages([]);
-          setVideos([]);
-          setDocuments([]);
-          setImage();
+      
+
+          Swal.fire({
+            title: "Project uploaded successfully!",
+            confirmButtonText: "Proceed",
+            denyButtonText: `Don't save`
+          }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+              window.location.reload();
+              navigate('/addprojects');
+            } 
+          });
         
       }
       if(message){
@@ -267,6 +296,7 @@ const AddProject = () => {
       const filteredVideos = videos && videos.filter((video) => (
         video.url !== media
       ))
+      videoRef.current.value = "";
       setVideos(filteredVideos);
       return;
     }
@@ -274,6 +304,7 @@ const AddProject = () => {
       const filteredImage = images && images.filter((image) => (
         image.url !== media
       ))
+      imageRef.current.value = "";
       setImages(filteredImage);
       
     }
@@ -281,6 +312,7 @@ const AddProject = () => {
       const filteredDocuments = documents && documents.filter((document) => (
         document.url !== media
       ))
+      documentRef.current.value = "";
       setDocuments(filteredDocuments);
     }
   }
@@ -301,7 +333,16 @@ const AddProject = () => {
   // console.log(documents);
   console.log(image);
   return (
-    <div className="add-project-page">
+    <div className={loading ? 'loading-page' : 'add-project-page'}>
+      {
+        loading
+        ?
+        <div className="loading">
+
+        </div>
+        :
+        ''
+      }
       <h1>Add Project</h1>
       <form action="" onSubmit={handleProjectSubmit} className='project-form'>
         <div className="project-metadata">
@@ -336,7 +377,7 @@ const AddProject = () => {
         </div>
         <textarea name="description" placeholder='Provide description for your project' id="" onChange={handleProjectData} value={projectData.description} rows={20} cols={10}></textarea>
           <div className="project-title-image">
-            <h3>Upload your title image</h3>
+            <h3>Upload your cover image</h3>
             <div className="project-title-image-upload">
             <input type="file" name='file' onChange={onTitleImageSelect}/>
             </div>
@@ -358,7 +399,7 @@ const AddProject = () => {
         <h3>Upload Images</h3>
           <div className="project-image">
             <div className="project-upload">
-            <input type="file"  multiple name='file' onChange={onFileSelect}/>
+            <input ref={imageRef} type="file"  multiple name='file' onChange={onImageSelect}/>
             </div>
             <p>This website supports the images of (jpg, png, jpeg, gif) types.</p>
             <div className="uploaded-images">
@@ -366,7 +407,8 @@ const AddProject = () => {
             images && images.map((image) => (
               <div className="images ">
                 <img src={image.url} alt="" onClick={()=>handleMediaModal(image.url, 'image')}/>
-                <i class='fa-solid fa-x cancel-button' onClick={()=>handleMediaCancel(image.url, 'image')}></i>
+                <i class='fa-solid fa-x ' onClick={()=>handleMediaCancel(image.url, 'image')}></i>
+                
               </div>
             ))
           }
@@ -375,7 +417,7 @@ const AddProject = () => {
           <h3>Upload Videos</h3>
           <div className="project-video">
             <div className="project-upload">
-            <input type="file"  multiple name='file' onChange={onFileSelect}/>
+            <input ref={videoRef} type="file"  multiple name='file' onChange={onVideoSelect}/>
             </div>
             <p>This website supports the videos of (mp4, mp3, avi, mov) types.</p>
             <div className="uploaded-videos">
@@ -383,7 +425,7 @@ const AddProject = () => {
                   videos && videos.map((video) => (
                     <div className="videos">
                       <video src={video.url} width={150} height={150} onClick={()=>handleMediaModal(video.url, 'video')}></video>
-                      <i class='fa-solid fa-x cancel-button' onClick={()=>handleMediaCancel(video.url, 'video')}></i>
+                      <i class='fa-solid fa-x' onClick={()=>handleMediaCancel(video.url, 'video')}></i>
                     </div>  
                   ))
                 }
@@ -414,7 +456,7 @@ const AddProject = () => {
           <h3>Upload Documents</h3>
           <div className="project-document">
             <div className="project-upload">
-            <input type="file" multiple onChange={onDocumentSelect}/>
+            <input ref={documentRef} type="file" multiple onChange={onDocumentSelect}/>
             </div>
             <p>This website supports the documents of (pdf, docx, pptx, txt, md) types.</p>
             <div className="uploaded-documents">
@@ -422,7 +464,7 @@ const AddProject = () => {
                 documents && documents.map((document) => (
                   <div className="documents">
                     <a href={document.url} target='_blank'>{document.name}</a>
-                    <i class='fa-solid fa-x cancel-button' onClick={()=>handleMediaCancel(document.url, 'document')}></i>
+                    <i class='fa-solid fa-x' onClick={()=>handleMediaCancel(document.url, 'document')}></i>
                   </div>
                   
                 ))

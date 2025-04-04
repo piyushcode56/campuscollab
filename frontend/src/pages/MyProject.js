@@ -9,6 +9,8 @@ import { handleSuccess, handleError } from '../Utils';
 import { ToastContainer } from 'react-toastify';
 const MyProject = ({users}) => {
     const [userName, setUserName] = useState();
+    const [comment, setComment] = useState();
+    const [allComments, setAllComments] = useState([]);
     const navigate = useNavigate()
     const location = useLocation();
     const projectid = useParams();
@@ -182,6 +184,58 @@ const MyProject = ({users}) => {
             console.error(error);
         }
     }
+    const handleCommentSubmit =  async()=>{
+        try{
+            if(comment === ''){
+                return alert('First give some feedback!')
+            }
+            const url = 'http://localhost:8000/comments/add-comment';
+            const response = await fetch(url,{
+                method:'POST',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify({
+                    projectid:projectId,
+                    userid:localStorage.getItem('userId'),
+                    comment:comment,
+                    username:localStorage.getItem('username')
+                })
+            })
+            const result = await response.json();
+            const {success, error} = result;
+            if(success){
+                handleSuccess(success);
+                setComment('');
+                // setTimeout(() => {
+                //     window.location.reload();
+                // },2000)
+            }
+            if(error){
+                handleError(error);
+            }
+            console.log(result);
+        }   
+        catch(error){
+            console.error(error);
+        }
+    }
+    const fetchComments = async()=>{
+        try{
+            const url = `http://localhost:8000/comments/all-comment`;
+            const response = await fetch(url, {
+                method:'GET',
+                headers:{
+                    projectid:projectId
+                }
+            })
+            const result = await response.json();
+            setAllComments(result);
+        }
+        catch(error){
+            console.error(error);
+        }
+    }
     useEffect(() => {
         fetchProject();
     },[])
@@ -194,9 +248,13 @@ const MyProject = ({users}) => {
     useEffect(() => {
         fetchUserName();
     },[users, userid])
+
+    useEffect(()=>{
+        fetchComments();
+    },[projectId, userid, comment])
     
   return (
-    <div style={{marginTop:'100px'}} className='project-page'>
+    <div className='project-page'>
         {
             location.pathname === `/${userid}/${projectId}`
             ?
@@ -212,6 +270,7 @@ const MyProject = ({users}) => {
     :
         project ?
         <div className='project-section'>
+            
             <div className="project-data-links">
             <a href="#name">Name</a>
                 <a href="#introduction">Introduction</a>
@@ -276,7 +335,7 @@ const MyProject = ({users}) => {
             <div className="secondary-details">
             
                 <div className="project-images">
-                    <h2  id='images'>Project images</h2>
+                    <h3 style={{color:'blue'}}  id='images'>Project images</h3>
                     {
                         Array.isArray(images) && images.length > 0
                         ?
@@ -295,7 +354,7 @@ const MyProject = ({users}) => {
                 </div>
          
                 <div className="project-videos" >
-                    <h2 id='videos'>Project videos</h2>
+                    <h3 style={{color:'blue'}} id='videos'>Project videos</h3>
                     {
                         Array.isArray(videos) && videos.length > 0
                         ?
@@ -343,7 +402,7 @@ const MyProject = ({users}) => {
                 }
                 
                 <div className="project-documents">
-                <h2 id='documents'>Project related documents</h2>
+                <h3 style={{color:'blue'}} id='documents'>Project related documents</h3>
                     {
                         Array.isArray(documents) && documents.length > 0
                         ?
@@ -372,8 +431,50 @@ const MyProject = ({users}) => {
                 </div>
             </div>
             <div className="other-links-details" style={{marginTop:'30px'}}>
-                <h3 id='otherlinks'><strong>{project.otherLinks}</strong></h3>
+            <h3 style={{color:'blue'}} id='documents'>Project related Links</h3>
+                <a style={{color:'blue', textDecoration:'underline'}} href={project.otherLinks}>{project.otherLinks}</a>
             </div>
+
+            <div className="comment-section">
+            {
+                location.pathname === `/${userid}/${projectId}`
+                ?
+                <div className="comment-section">
+                    <textarea name="" id="" rows={8} placeholder="What's your feedback on this project" onChange={(e)=>setComment(e.target.value)} required value={comment}></textarea>
+                    <button onClick={()=>handleCommentSubmit()}>Submit</button>
+                    
+                </div>
+                :
+                ''
+            }
+            
+            </div>
+            {
+                location.pathname ===  `/${userid}/${projectId}` ?
+                <div className="user-comment">
+                <h3 style={{marginBottom:'20px'}}>Project Reviews</h3>
+                {
+                    Array.isArray(allComments) && allComments.length > 0
+                    ?
+                    allComments.slice(0,7).map((userComment) => {
+                        
+                        return <div className="comments">
+                            <Link to={`/${userComment.userid}/projects`}>{userComment.username}</Link>
+                            <p>{userComment.comments}</p>
+                            
+                        </div>
+                        
+                    })
+                    :
+                    <p>This project doesn't have any comments yet!</p>
+                }
+                <div className="all-reviews" style={{marginTop:'30px'}}>
+                <Link to={`/${userid}/${projectId}/reviews`}>See all reviews <i class="fa-solid fa-arrow-right"></i></Link>
+                </div>
+            </div>
+            :
+            ''
+            }
             </div>
         </div>
         :

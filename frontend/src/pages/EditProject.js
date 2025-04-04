@@ -385,7 +385,7 @@ const EditProject = () => {
         return <div className="images">
             <img width={200} src={imageUrl} alt="Uploaded Image" />
           <i
-            className="fa-solid fa-x cancel-button"
+            className="fa-solid fa-x"
             onClick={() => handlePreviousMediaCancel("image", prevImage.fileUrl)}
           ></i>
         </div>
@@ -397,7 +397,7 @@ const EditProject = () => {
       <div className="images" key={index}>
         <img width={200} src={image.url} alt="New Image" />
         <i
-          className="fa-solid fa-x cancel-button"
+          className="fa-solid fa-x"
           onClick={()=> handleMediaCancel("image", image.url)}
         ></i>
       </div>
@@ -423,7 +423,7 @@ const EditProject = () => {
                         return <div className="videos">
                             <video width={200} src={videoUrl} alt="Uploaded Image" />
                           <i
-                            className="fa-solid fa-x cancel-button"
+                            className="fa-solid fa-x"
                             onClick={() => handlePreviousMediaCancel("video", prevVideo.fileUrl)}
                           ></i>
                         </div>
@@ -436,7 +436,7 @@ const EditProject = () => {
                     newVideos.map((video) => {
                         return <div className="videos">
                             <video width={200} src={video.url} alt="" />
-                            <i class='fa-solid fa-x cancel-button'   onClick={()=>handleMediaCancel("video", video.url)}></i>
+                            <i class='fa-solid fa-x'   onClick={()=>handleMediaCancel("video", video.url)}></i>
 
                         </div>
                     })
@@ -461,7 +461,7 @@ const EditProject = () => {
                     return <div className="documents">
                         <a href={documentUrl}>{prevDocument.fileName}</a>
                       <i
-                        className="fa-solid fa-x cancel-button"
+                        className="fa-solid fa-x"
                         onClick={() => handlePreviousMediaCancel("document", prevDocument.fileUrl)}
                       ></i>
                     </div>
@@ -475,7 +475,7 @@ const EditProject = () => {
                     newDocuments.map((document) => {
                         return <div className="documents">
                             <a href={document.url}>{document.name}</a>
-                            <i class='fa-solid fa-x cancel-button'  onClick={()=>handleMediaCancel("document", document.url)}></i>
+                            <i class='fa-solid fa-x'  onClick={()=>handleMediaCancel("document", document.url)}></i>
                         </div>
                     })
                     

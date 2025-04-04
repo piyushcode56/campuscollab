@@ -6,7 +6,9 @@ import './Login.css';
 import { useNavigate } from 'react-router-dom';
 import { handleSuccess, handleError } from '../Utils';
 import { ToastContainer } from 'react-toastify';
+import { useAuth } from '../auth/AuthController';
 const Login = () => {
+    const {login} = useAuth();
     const navigate = useNavigate();
     const [loginData, setLoginData] = useState({
         username:'',
@@ -42,6 +44,7 @@ const Login = () => {
             const {message, error, success, jwtToken, id, username, role, email} = result;
             console.log(role);
             if(success){
+                login();
                 handleSuccess(success);
                 localStorage.setItem('token', jwtToken);
                 localStorage.setItem('username', username);
@@ -59,8 +62,8 @@ const Login = () => {
                     },2000)
                 }
                 
-                
                 setTimeout(() => {
+
                     navigate('/')
                 }, 2000)
             }

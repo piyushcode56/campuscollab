@@ -46,9 +46,7 @@ const Navbar = () => {
             localStorage.removeItem('userEmail');
             handleSuccess(`${loggedinUser} logged out`)
             setLoggedinUser();
-            setTimeout(() => {
-                navigate('/login')
-            },1000)
+            window.location.reload();
             } 
           });
     }
@@ -58,7 +56,7 @@ const Navbar = () => {
     },[])
 
   return (
-    <div className={'navbar-page'} id='navbar'>
+    <div className={'navbar-page'} id='navbar' style={{marginBottom:'30px'}}>
       <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
             <div className="navbar_first_section">
                 <Link to={role === 'admin' ? '/admin' : '/'}><a href="/"><h2>Campus Collab</h2></a></Link>

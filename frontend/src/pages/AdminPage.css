@@ -8,6 +8,7 @@
     width: 25%;
     background-color: rgb(39, 38, 38);
     border: 2px solid white;
+    height: 100vh;
 }
 .admin-section{
     margin-top: 100px;

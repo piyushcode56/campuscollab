@@ -14,7 +14,6 @@ const Signup = () => {
         username:'',
         email:'',
         password:'',
-        role:''
     })
 
     const handleSignupData = (e) => {
@@ -79,12 +78,6 @@ const Signup = () => {
       <input type="text" id="name" name="name" placeholder="Enter your name" value={signupData.name} required onChange={handleSignupData}/>
 
       <input type="text" id="username" name="username" placeholder="Choose a username" value={signupData.username} required onChange={handleSignupData}/>
-
-      <select name='role' id="" onChange={handleSignupData} value={signupData.role}>
-        <option value="">Select Role</option>
-        <option value="user">User</option>
-        <option value="admin">Admin</option>
-      </select>
      
       <input type="email" id="email" name="email" placeholder="Enter your email" value={signupData.email} required onChange={handleSignupData}/>
      

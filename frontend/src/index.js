@@ -4,14 +4,14 @@ import {BrowserRouter} from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import App from './App';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-
+import { AuthProvider } from './auth/AuthController';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-    
+    <AuthProvider>
     <App />
-  
+    </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

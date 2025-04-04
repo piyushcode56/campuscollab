@@ -7,8 +7,6 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const AdminPage = ({admin}) => {
-
-  
   const location = useLocation();
   return (
     <div className="admin-page">

@@ -48,7 +48,7 @@ const Favourites = () => {
     },[favourites])
  
   return (
-    <div className='favourites-page'>
+    <div className='favourites-page' style={{marginTop:'100px'}}>
       {
         !favourites
         ?

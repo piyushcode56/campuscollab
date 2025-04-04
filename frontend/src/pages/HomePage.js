@@ -117,7 +117,7 @@ const HomePage = ({ users }) => {
                     <h3>{project.domain}</h3>
                   </div>
                   <div className="project-description">
-                    <p>{project.description.slice(0, 60)}...</p>
+                    <p>{project.description.slice(0, 100)}...</p>
                   </div>
                   <div className="projects-arrow">
                     <Link to={`/project/${project._id}`}>

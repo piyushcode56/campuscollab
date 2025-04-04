@@ -24,16 +24,16 @@ const SearchUser = ({users}) => {
     <div className='searched-users-page'>
         <div className="filtered-username">
         {
-            filteredUsers
+            Array.isArray(filteredUsers) && filteredUsers.length > 0
             ?
             <h2>Search results for '{searchQuery}'</h2>
             :
-            ''
+            <h2>No results for '{searchQuery}'</h2>
         }
         </div>
         <div className="filtered-user">
         {
-            filteredUsers
+            Array.isArray(filteredUsers) && filteredUsers.length > 0
             ?
             filteredUsers.map((filteredUser) => {
                 return <Link to={`/${filteredUser._id}/projects`}>

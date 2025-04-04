@@ -26,6 +26,9 @@ import EditProject from './pages/EditProject';
 import Favourites from './pages/Favourites';
 import Footer from './components/Footer';
 import FavouriteProject from './pages/FavouriteProject';
+import Reviews from './pages/Reviews';
+import ProtectedRoute from './auth/ProtectedRoute';
+import PublicRoute from './auth/PublicRoute';
 const App = () => {
   const [admin, setAdmin] = useState();
   const Id = localStorage.getItem('userId');
@@ -82,7 +85,7 @@ const App = () => {
 
   useEffect(() => {
     fetchAdmin();
-  },[])
+  },[admin])
 
   useEffect(() => {
     fetchProjects();
@@ -93,22 +96,27 @@ const App = () => {
       <Navbar/>
       <DynamicTitle/>
       <Routes>
-        
+      <Route element={<PublicRoute/>}>
+      <Route path='/signup' element={<Signup/>}/>
+      <Route path='/login' element={<Login/>}/>
+      </Route>
+        <Route element={<ProtectedRoute/>}>
         <Route path='/' element={<HomePage users={users}/>}/>
-        <Route path='/signup' element={<Signup/>}/>
-        <Route path='/login' element={<Login/>}/>
         <Route path='/myprojects' element={<MyProjects/>}/>
         <Route path='/addprojects' element={<AddProject/>}/>
-        <Route path='/project/:projectid' element={<MyProject/>}/>
+        <Route path='/favourites' element={<Favourites/>}/>
         <Route path='/campuscollab/search' element={<SearchUser users={users}/>}/>
+        </Route>
+        
+        <Route path='/project/:projectid' element={<MyProject/>}/>
         <Route path='/:userid/projects' element={<UserBasedProjects projects={projects} users={users}/>}/>
         <Route path='/user/verifyotp' element={<OtpComponent/>}/>
         <Route path='/user/resetpasswordotp' element={<OtpComponent/>}/>
         <Route path='/user/resetpassword' element={<ResetPassword/>}/>
         <Route path='/edit/project/:projectId' element={<EditProject/>}/>
         <Route path='/:userid/:projectid' element={<UserBasedProject projects={projects} users={users}/>}/>
-        <Route path='/favourites' element={<Favourites/>}/>
         <Route path = '/project/favourite/:projectid' element={<FavouriteProject/>}/>
+        <Route path='/:userid/:projectId/reviews' element={<Reviews/>}/>
         <Route path='/admin' element={<AdminPage admin={admin}/>}>
           <Route path='users' element={<AllUser users={users}/>}/>
           <Route path='allprojects' element={<AllProject projects={projects} users={users}/>}/>
@@ -117,7 +125,7 @@ const App = () => {
           <Route path='/admin/:userid/project/:projectid' element={<ParticularUserProject projects={projects} users={users}/>}/>
         </Route>
       </Routes>
-      <Footer/>
+      <Footer />
     
     </div>
   )

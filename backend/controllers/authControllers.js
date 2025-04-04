@@ -8,8 +8,12 @@ const Project = require('../models/ProjectSchema.js');
 
 const signup = async(req, res) => {
     try{
-        const {name, username, email, password, role} = req.body;
+        const {name, username, email, password} = req.body;
         console.log(name);
+        console.log(username);
+        console.log(email);
+        console.log(password);
+        
         const userData = await User.findOne({email});
         
         if(userData){
@@ -25,7 +29,6 @@ const signup = async(req, res) => {
                 username,
                 email,
                 password:hashedPassword,
-                role,
                 verifiedCode:verifiedCode
             })
             console.log(user);

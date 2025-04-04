@@ -1,38 +1,80 @@
-.footer-component{
-    width: 100%;
+/* Footer Container */
+.footer-component {
+    background-color: #101010;
+    color: white;
     display: flex;
-    justify-content: space-evenly;
-    background-color: black;
-    border-top: 2px solid gold;
-    padding: 20px;
-    position: relative;
-    height: 100%;
-    margin-top: 40%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    flex-wrap: wrap;
+    text-align: center;
 }
-.footer-first-section img{
-    width: 200px;
+
+/* Footer Logo Section */
+.footer-first-section img {
+    width: 150px;
+    height: auto;
     border-radius: 10px;
 }
 
-.footer-second-section{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    color: cyan;
-}
-.footer-second-section a:hover{
-    color: cyan;
-}
-.footer-third-section{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-.follow-us-links{
+/* Footer Links Section */
+.footer-second-section, .footer-third-section {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
-.follow-us-links a:hover{
+
+.footer-second-section h3,
+.footer-third-section h3 {
+    margin-bottom: 10px;
+}
+
+/* Links Styling */
+.footer-second-section a, .footer-third-section a {
+    color: white;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.footer-second-section a:hover, 
+.footer-third-section a:hover {
     color: cyan;
+}
+
+/* Social Media Icons */
+.follow-us-links {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.follow-us-links a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.follow-us-links i {
+    font-size: 18px;
+    color: cyan;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-component {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .footer-first-section img {
+        width: 120px;
+        margin-bottom: 15px;
+    }
+
+    .footer-second-section, .footer-third-section {
+        align-items: center;
+        width: 100%;
+    }
 }

@@ -1,62 +1,293 @@
-.homepage{
-    width: 85%;
-    margin: 100px auto;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #01011c;
+    color: white;
+}
 
-}
-.homepage_first_component{
-    width: 50%;
-    margin: 10px auto;
-}
-.homepage_first_section{
+/* Search Bar */
+.search-user {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
     justify-content: center;
     align-items: center;
-    text-align: center;
-}
-.homepage_first_section h1{
-    color: cyan;
-    font-size: 30px;
-    font-weight: 900;
-}
-.homepage_first_section p{
-    color: rgb(233, 232, 232);
-    font-weight: 800;
-    font-size: 18px;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 500px;
 }
 
-.homepage_first_project_section{
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    
-}
-.homepage_first_project_section button{
-    padding: 10px;
-    border-radius: 5px;
+.search-user input {
+    flex: 1;
+    padding: 12px;
     border: none;
-    cursor: pointer;
-    font-weight: 600;
-    transition: 0.3s ease;
-    
+    border-radius: 5px 0 0 5px;
+    font-size: 16px;
 }
-.homepage_first_project_section button:hover{
+
+.search-user button {
+    padding: 12px 15px;
     background-color: #1e3a8a;
     color: white;
-    transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(59, 130, 246, 0.5);
+    border: none;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0;
+    transition: background 0.3s;
 }
 
-.latest-projects{
+.search-user button:hover {
+    background-color: #142f6d;
+}
+
+/* Hero Section */
+.homepage_first_component {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.homepage_first_section h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.homepage_first_section p {
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+    color: #ccc;
+}
+
+.homepage_first_project_section {
+    margin-top: 20px;
     display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.homepage_first_project_section button {
+    padding: 12px 18px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #1e3a8a;
+    color: white;
+    transition: 0.3s;
+}
+
+.homepage_first_project_section button:hover {
+    background-color: #142f6d;
+}
+
+/* Latest Projects Section */
+.homepage_second_component {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.latest-projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
     gap: 20px;
-    flex-wrap: wrap;
+    justify-content: center;
     padding: 20px;
 }
-.projects i{
-    font-size: 25px;
+
+/* Project Cards */
+.projects {
+    background-color: #010814;
+    border: 1px solid blue;
+    border-radius: 8px;
+    padding: 15px;
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-height: 350px; /* Ensure uniform height */
+}
+
+.projects:hover {
+    transform: scale(1.05);
+}
+
+/* Project Image */
+.project-image-title {
+    width: 100%;
+    height: 200px; /* Fixed height for consistency */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.project-image-title img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover; /* Prevents image distortion */
+    border-radius: 5px;
+}
+
+/* Project Text */
+.project-name h3,
+.project-domain h3 {
+    font-size: 18px;
+    color: #ffffff;
+    margin: 5px 0;
+}
+
+.project-description p {
+    font-size: 14px;
+    color: #aaa;
+}
+
+/* Arrow Icon */
+.projects-arrow {
+    font-size: 22px;
+    margin-top: auto; /* Pushes arrow to the bottom */
+}
+
+.projects-arrow i {
+    color: white;
+    transition: color 0.3s;
+}
+
+.projects-arrow i:hover {
+    color: green;
+}
+
+
+
+/* Loading Spinner */
+.loading {
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading::after {
+    content: "";
+    width: 50px;
+    height: 50px;
+    border: 8px solid grey;
+    border-top-color: blue;
+    border-radius: 50%;
+    animation: loading 0.75s ease infinite;
+}
+
+@keyframes loading {
+    from {
+        transform: rotate(0turn);
+    }
+    to {
+        transform: rotate(1turn);
+    }
+}
+
+/* Project Details Popup */
+.project {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(8px);
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.project-information {
+    width: 90%;
+    max-width: 800px;
+    background: linear-gradient(rgb(90, 90, 138), grey);
+    padding: 20px;
+    border-radius: 8px;
+    color: black;
+    position: relative;
+}
+
+.project-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cancel-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+    font-size: 24px;
+    color: white;
+    background: red;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .homepage_first_section h1 {
+        font-size: 1.8rem;
+    }
+
+    .homepage_first_project_section {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .projects {
+        max-width: 100%;
+    }
+
+    .project-information {
+        width: 95%;
+        padding: 15px;
+    }
+}
+
+/* Better mobile adjustments */
+@media (max-width: 480px) {
+    .search-user {
+        flex-direction: row;
+        width: 100%;
+        max-width: 380px;
+    }
+
+    .search-user input {
+        flex-grow: 1;
+        width: auto;
+        border-radius: 5px 0 0 5px;
+    }
+
+    .search-user button {
+        width: 40px;
+        border-radius: 0 5px 5px 0;
+    }
+
+    .latest-projects {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .projects {
+        width: 90%;
+        max-width: 350px;
+    }
+
+    .project-information {
+        width: 90%;
+        padding: 15px;
+    }
 }

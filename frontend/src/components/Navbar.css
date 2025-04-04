@@ -1,39 +1,192 @@
-nav{
-    position: fixed;
-    display: flex;
-    justify-content: space-around;
-    height: 60px;
-    align-items: center;
-    background-color: #00000f;
-    border-bottom: 1px solid white;
+
+/* Navbar.css */
+
+.navbar-page {
     width: 100%;
     top: 0;
     z-index: 1000;
-    transition: 0.7s ease;
-}
-.navbar.scrolled{
-    background-color: #201f54;
-}
-.navbar_second_section ul{
+    background-color: rgb(3, 3, 122);
+    
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar {
     display: flex;
-    gap: 20px;
-}
-.navbar_second_section a:hover{
-    text-decoration: 1px solid rgb(64, 255, 0) underline;
-
-}
-.navbar_third_section button{
-    background-color: #8c0307;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+  }
+  
+  .navbar.scrolled {
+    padding: 0.5rem 2rem;
+    background-color: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar_first_section h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #2c3e50;
+    background: linear-gradient(90deg, #3498db, #8e44ad);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.3s ease;
+  }
+  
+  .navbar_first_section h2:hover {
+    transform: scale(1.05);
+  }
+  
+  .username h3 {
+    margin: 0;
+    font-size: 1.2rem;
     font-weight: 600;
+    color: #3498db !important;
+    text-transform: capitalize;
+  }
+  
+  .navbar_second_section ul, 
+  .admin-class ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 1.5rem;
+  }
+  
+  .navbar_second_section a, 
+  .admin-class a {
+    text-decoration: none;
     color: white;
-}
-.navbar_third_section button:hover{
-    background-color: #5c0204;
-}
-.admin-class a{
-    display: none;
-}
+    font-weight: 500;
+    font-size: 1rem;
+    position: relative;
+    padding: 0.5rem 0;
+    transition: all 0.3s ease;
+  }
+  
+  .navbar_second_section a::after, 
+  .admin-class a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #3498db;
+    transition: width 0.3s ease;
+  }
+  
+  .navbar_second_section a:hover, 
+  .admin-class a:hover {
+    color: #3498db;
+  }
+  
+  .navbar_second_section a:hover::after, 
+  .admin-class a:hover::after {
+    width: 100%;
+  }
+  
+  .navbar_third_section button {
+    background: linear-gradient(135deg, #3498db, #8e44ad);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 25px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar_third_section button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 992px) {
+    .navbar {
+      padding: 1rem;
+    }
+    
+    .navbar_second_section ul, 
+    .admin-class ul {
+      gap: 1rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      padding: 1rem;
+      gap: 1rem;
+    }
+    
+    .navbar_first_section, 
+    .username, 
+    .navbar_second_section, 
+    .admin-class, 
+    .navbar_third_section {
+      width: 100%;
+      text-align: center;
+    }
+    
+    .navbar_second_section ul, 
+    .admin-class ul {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .navbar_second_section a, 
+    .admin-class a {
+      display: block;
+      padding: 0.5rem;
+      border-radius: 4px;
+    }
+    
+    .navbar_second_section a:hover, 
+    .admin-class a:hover {
+      background-color: #f8f9fa;
+    }
+    
+    .navbar_third_section button {
+      width: 100%;
+      max-width: 200px;
+      margin-top: 0.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .navbar_first_section h2 {
+      font-size: 1.5rem;
+    }
+    
+    .username h3 {
+      font-size: 1rem;
+    }
+    
+    .navbar_second_section a, 
+    .admin-class a {
+      font-size: 0.9rem;
+    }
+    
+    .navbar_third_section button {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+    }
+  }
+  
+  /* Active link styling (you can add this if using NavLink) */
+  .active {
+    color: #3498db !important;
+    font-weight: 600 !important;
+  }
+  
+  .active::after {
+    width: 100% !important;
+  }
