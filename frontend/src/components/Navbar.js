@@ -59,7 +59,7 @@ const Navbar = () => {
     <div className={'navbar-page'} id='navbar' style={{marginBottom:'30px'}}>
       <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
             <div className="navbar_first_section">
-                <Link to={role === 'admin' ? '/admin' : '/'}><a href="/"><h2>Cmpus Collab</h2></a></Link>
+                <Link to={role === 'admin' ? '/admin' : '/'}><a href="/"><h2>Campus Collab</h2></a></Link>
             </div>
 
             <div className="username">
