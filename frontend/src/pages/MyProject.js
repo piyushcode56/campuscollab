@@ -26,7 +26,7 @@ const MyProject = ({users}) => {
     // const [fileUrl, setFileUrl] = useState();
     const handleFavourites = async()=>{
         try{
-            const url = 'http://localhost:8000/user/add-to-favourites';
+            const url = 'https://campuscollab-backend.onrender.com/user/add-to-favourites';
             const response = await fetch(url, {
                 method:'PUT',
                 headers:{
@@ -55,7 +55,7 @@ const MyProject = ({users}) => {
     const fetchProject = async() => {
         
         try{
-            const url = `http://localhost:8000/projects/project/${projectId}`;
+            const url = `https://campuscollab-backend.onrender.com/projects/project/${projectId}`;
             const response = await fetch(url, {
                 method:'GET',
                 headers:{
@@ -123,7 +123,7 @@ const MyProject = ({users}) => {
     }
     async function deleteProject(projectId){
         try{
-           const url = 'http://localhost:8000/projects/delete-project';
+           const url = 'https://campuscollab-backend.onrender.com/projects/delete-project';
            const response = await fetch(url, {
             method:'DELETE',
             headers:{
@@ -156,7 +156,7 @@ const MyProject = ({users}) => {
     const handleFavouriteRemove = async(id) => {
         try{
             try{
-                const url = 'http://localhost:8000/user/remove-favourites';
+                const url = 'https://campuscollab-backend.onrender.com/user/remove-favourites';
                 const response = await fetch(url, {
                     method:'DELETE',
                     headers:{
@@ -189,7 +189,7 @@ const MyProject = ({users}) => {
             if(comment === ''){
                 return alert('First give some feedback!')
             }
-            const url = 'http://localhost:8000/comments/add-comment';
+            const url = 'https://campuscollab-backend.onrender.com/comments/add-comment';
             const response = await fetch(url,{
                 method:'POST',
                 headers:{
@@ -222,7 +222,7 @@ const MyProject = ({users}) => {
     }
     const fetchComments = async()=>{
         try{
-            const url = `http://localhost:8000/comments/all-comment`;
+            const url = `https://campuscollab-backend.onrender.com/comments/all-comment`;
             const response = await fetch(url, {
                 method:'GET',
                 headers:{
@@ -342,7 +342,7 @@ const MyProject = ({users}) => {
                         images.map((image) => {
                         
                             const parsedUrl = image.fileUrl.replace(/\\/g,'/').replace(/^uploads\//, '')
-                            const imageUrl = `http://localhost:8000/uploads/${parsedUrl}`;
+                            const imageUrl = `https://campuscollab-backend.onrender.com/uploads/${parsedUrl}`;
                             return  <div className='uploaded-images'>
                                 <img key={image.fileUrl} src={imageUrl} alt="" onClick={()=>handleMediaModal(imageUrl, 'image')}/>
                                 <hr />
@@ -361,7 +361,7 @@ const MyProject = ({users}) => {
                         videos.map((video) => {
                         
                             const parsedUrl = video.fileUrl.replace(/\\/g,'/').replace(/^uploads\//, '')
-                            const videoUrl = `http://localhost:8000/uploads/${parsedUrl}`;
+                            const videoUrl = `https://campuscollab-backend.onrender.com/uploads/${parsedUrl}`;
                             return  <div className='uploaded-videos'>
                                 <video controls src={videoUrl} onClick={()=>handleMediaModal(videoUrl, 'video')}></video>
                                 <hr />
@@ -408,7 +408,7 @@ const MyProject = ({users}) => {
                         ?
                         documents.map((documentFile) => {
                             const parsedUrl = documentFile.fileUrl.replace(/\\/g,'/').replace(/^uploads\//, '')
-                            const documentUrl = `http://localhost:8000/uploads/${parsedUrl}`;
+                            const documentUrl = `https://campuscollab-backend.onrender.com/uploads/${parsedUrl}`;
                             // console.log(documentUrl);
                             return  <div className='documentFiles'>
                                 <a href={documentUrl} target='_blank' download={documentFile.fileName}> {documentFile.fileName}</a>
