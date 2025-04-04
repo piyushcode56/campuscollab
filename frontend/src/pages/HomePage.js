@@ -13,7 +13,7 @@ const HomePage = ({ users }) => {
   const [searchQuery, setSearchQuery] = useState();
   const fetchProjects = async () => {
     try {
-      const url = `http://localhost:8000/projects/myprojects/${id}`;
+      const url = `https://campuscollab-backend.onrender.com/projects/myprojects/${id}`;
       const response = await fetch(url, {
         method: "GET",
         headers: {
@@ -100,7 +100,7 @@ const HomePage = ({ users }) => {
                   <div className="project-image-title">
                     {project && project.image ? (
                       <img
-                        src={`http://localhost:8000/uploads/${project.image
+                        src={`https://campuscollab-backend.onrender.com/uploads/${project.image
                           .replace(/\\/g, "/")
                           .replace(/^uploads\//, "")}`}
                         alt=""
