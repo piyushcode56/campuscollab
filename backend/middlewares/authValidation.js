@@ -8,7 +8,7 @@ const signupValidation = (req, res, next) => {
         username:Joi.string().min(3).max(100).required(),
         email:Joi.string().min(3).max(100).email().required(),
         password:Joi.string().min(3).max(100).required(),
-        role: Joi.string().min(3).max(100).valid('user', 'admin').required()
+
     })
 
     const {error} = schema.validate(req.body);
