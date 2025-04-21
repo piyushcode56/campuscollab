@@ -18,7 +18,7 @@ const OtpComponent = () => {
         // const formData = new FormData();
         try{
             // formData.append('otp', otp)
-            const url = 'https://campuscollab-backend.onrender.com/user/verifyotp';
+            const url = 'http://localhost:8000/user/verifyotp';
             const response = await fetch(url, {
                 method:'POST',
                 headers:{
@@ -52,7 +52,7 @@ const OtpComponent = () => {
         e.preventDefault();
 
         try{
-            const url = 'https://campuscollab-backend.onrender.com/user/resetpasswordotp';
+            const url = 'http://localhost:8000/user/resetpasswordotp';
             const response = await fetch(url, {
                 method:'POST',
                 headers:{

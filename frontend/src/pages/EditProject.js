@@ -55,7 +55,7 @@ const EditProject = () => {
     ]
     const fetchProjectData = async() => {
         try{
-            const url = `https://campuscollab-backend.onrender.com/projects/editprojectdata/${projectId}`;
+            const url = `http://localhost:8000/projects/editprojectdata/${projectId}`;
             const response = await fetch(url, {
                 method:'GET',
                 headers:{
@@ -283,7 +283,7 @@ const EditProject = () => {
                 formData.append('editedFiles', document.file)
             })
 
-            const url = `https://campuscollab-backend.onrender.com/editproject/edit/project/${projectId}`;
+            const url = `http://localhost:8000/editproject/edit/project/${projectId}`;
             const response = await fetch(url, {
                 method:'POST',
                 headers:{
@@ -380,8 +380,8 @@ const EditProject = () => {
     previousImages 
     &&
     previousImages.map((prevImage) => {
-        const parsedUrl = prevImage.fileUrl.replace(/\\/g, '/').replace(/^uploads\//, '');
-        const imageUrl = `https://campuscollab-backend.onrender.com/uploads/${parsedUrl}`;
+        // const parsedUrl = prevImage.fileUrl.replace(/\\/g, '/').replace(/^uploads\//, '');
+        const imageUrl = prevImage.fileUrl;
         return <div className="images">
             <img width={200} src={imageUrl} alt="Uploaded Image" />
           <i
@@ -417,8 +417,8 @@ const EditProject = () => {
                     previousVideos 
                     &&
                     previousVideos.map((prevVideo) => {
-                        const parsedUrl = prevVideo.fileUrl.replace(/\\/g, '/').replace(/^uploads\//, '');
-                        const videoUrl = `https://campuscollab-backend.onrender.com/uploads/${parsedUrl}`;
+                        // const parsedUrl = prevVideo.fileUrl.replace(/\\/g, '/').replace(/^uploads\//, '');
+                        const videoUrl = prevVideo.fileUrl;
                 
                         return <div className="videos">
                             <video width={200} src={videoUrl} alt="Uploaded Image" />
@@ -456,8 +456,8 @@ const EditProject = () => {
                 previousDocuments 
                 &&
                 previousDocuments.map((prevDocument) => {
-                    const parsedUrl = prevDocument.fileUrl.replace(/\\/g, '/').replace(/^uploads\//, '');
-                    const documentUrl = `https://campuscollab-backend.onrender.com/uploads/${parsedUrl}`;
+                    // const parsedUrl = prevDocument.fileUrl.replace(/\\/g, '/').replace(/^uploads\//, '');
+                    const documentUrl = prevDocument.fileUrl;
                     return <div className="documents">
                         <a href={documentUrl}>{prevDocument.fileName}</a>
                       <i

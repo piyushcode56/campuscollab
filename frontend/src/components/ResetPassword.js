@@ -23,7 +23,7 @@ const ResetPassword = () => {
         e.preventDefault();
     
         try{
-            const url = 'https://campuscollab-backend.onrender.com/user/resetpassword';
+            const url = 'http://localhost:8000/user/resetpassword';
             const response = await fetch(url, {
                 method:'POST',
                 headers:{

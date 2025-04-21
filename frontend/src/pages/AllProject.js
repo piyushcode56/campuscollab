@@ -43,7 +43,7 @@ const AllProject = ({projects, users}) => {
 
     async function removeProject(projectId) {
         try{
-            const url = 'https://campuscollab-backend.onrender.com/projects/delete-project';
+            const url = 'http://localhost:8000/projects/delete-project';
             const response = await fetch(url, {
                 method:'DELETE',
                 headers:{

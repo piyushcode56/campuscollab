@@ -12,10 +12,12 @@ const Navbar = () => {
     const [role, setRole] = useState();
     const userId = localStorage.getItem('userId');
     const [email, setEmail] = useState();
+    const [username, setUsername] = useState();
     useEffect(()=>{
         setLoggedinUser(localStorage.getItem('username'))
         setRole(localStorage.getItem('userRole'));
         setEmail(localStorage.getItem('userEmail'))
+        setUsername(localStorage.getItem('username'));
     },[userId])
 
     const handleScroll = () => {
@@ -64,7 +66,7 @@ const Navbar = () => {
 
             <div className="username">
                 <h3 style={{color:'cyan'}}>Welcome ~ {
-                    !loggedinUser ? "user" : loggedinUser ? `${email}` : ''
+                    !loggedinUser ? "user" : loggedinUser ? `${username}` : ''
                     }</h3>
             </div>
             <div className={role === 'admin' ? 'admin-class' : 'navbar_second_section'}>

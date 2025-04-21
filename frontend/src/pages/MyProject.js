@@ -26,7 +26,7 @@ const MyProject = ({users}) => {
     // const [fileUrl, setFileUrl] = useState();
     const handleFavourites = async()=>{
         try{
-            const url = 'https://campuscollab-backend.onrender.com/user/add-to-favourites';
+            const url = 'http://localhost:8000/user/add-to-favourites';
             const response = await fetch(url, {
                 method:'PUT',
                 headers:{
@@ -55,7 +55,7 @@ const MyProject = ({users}) => {
     const fetchProject = async() => {
         
         try{
-            const url = `https://campuscollab-backend.onrender.com/projects/project/${projectId}`;
+            const url = `http://localhost:8000/projects/project/${projectId}`;
             const response = await fetch(url, {
                 method:'GET',
                 headers:{
@@ -123,7 +123,7 @@ const MyProject = ({users}) => {
     }
     async function deleteProject(projectId){
         try{
-           const url = 'https://campuscollab-backend.onrender.com/projects/delete-project';
+           const url = 'http://localhost:8000/projects/delete-project';
            const response = await fetch(url, {
             method:'DELETE',
             headers:{
@@ -156,7 +156,7 @@ const MyProject = ({users}) => {
     const handleFavouriteRemove = async(id) => {
         try{
             try{
-                const url = 'https://campuscollab-backend.onrender.com/user/remove-favourites';
+                const url = 'http://localhost:8000/user/remove-favourites';
                 const response = await fetch(url, {
                     method:'DELETE',
                     headers:{
@@ -189,7 +189,7 @@ const MyProject = ({users}) => {
             if(comment === ''){
                 return alert('First give some feedback!')
             }
-            const url = 'https://campuscollab-backend.onrender.com/comments/add-comment';
+            const url = 'http://localhost:8000/comments/add-comment';
             const response = await fetch(url,{
                 method:'POST',
                 headers:{
@@ -222,7 +222,7 @@ const MyProject = ({users}) => {
     }
     const fetchComments = async()=>{
         try{
-            const url = `https://campuscollab-backend.onrender.com/comments/all-comment`;
+            const url = `http://localhost:8000/comments/all-comment`;
             const response = await fetch(url, {
                 method:'GET',
                 headers:{
@@ -341,8 +341,9 @@ const MyProject = ({users}) => {
                         ?
                         images.map((image) => {
                         
-                            const parsedUrl = image.fileUrl.replace(/\\/g,'/').replace(/^uploads\//, '')
-                            const imageUrl = `https://campuscollab-backend.onrender.com/uploads/${parsedUrl}`;
+                            // const parsedUrl = image.fileUrl.replace(/\\/g,'/').replace(/^uploads\//, '')
+                            // const imageUrl = `http://localhost:8000/uploads/${parsedUrl}`;
+                            const imageUrl = image.fileUrl
                             return  <div className='uploaded-images'>
                                 <img key={image.fileUrl} src={imageUrl} alt="" onClick={()=>handleMediaModal(imageUrl, 'image')}/>
                                 <hr />
@@ -361,7 +362,7 @@ const MyProject = ({users}) => {
                         videos.map((video) => {
                         
                             const parsedUrl = video.fileUrl.replace(/\\/g,'/').replace(/^uploads\//, '')
-                            const videoUrl = `https://campuscollab-backend.onrender.com/uploads/${parsedUrl}`;
+                            const videoUrl = video.fileUrl;
                             return  <div className='uploaded-videos'>
                                 <video controls src={videoUrl} onClick={()=>handleMediaModal(videoUrl, 'video')}></video>
                                 <hr />
@@ -407,16 +408,16 @@ const MyProject = ({users}) => {
                         Array.isArray(documents) && documents.length > 0
                         ?
                         documents.map((documentFile) => {
-                            const parsedUrl = documentFile.fileUrl.replace(/\\/g,'/').replace(/^uploads\//, '')
-                            const documentUrl = `https://campuscollab-backend.onrender.com/uploads/${parsedUrl}`;
+            
+                            const documentUrl = documentFile.fileUrl;
                             // console.log(documentUrl);
                             return  <div className='documentFiles'>
-                                <a href={documentUrl} target='_blank' download={documentFile.fileName}> {documentFile.fileName}</a>
+                                <a href={documentUrl} target='_blank' download> {documentFile.fileName}</a>
                                 <i class='fa-solid fa-download' 
                                 onClick={() => {
                                     const link = document.createElement('a');
                                     link.href = documentUrl;
-                                    link.download = document.fileName;
+                                    link.download = documentFile.fileName;
                                     link.target = '_blank';
                                     document.body.appendChild(link);
                                     link.click();  
@@ -432,7 +433,7 @@ const MyProject = ({users}) => {
             </div>
             <div className="other-links-details" style={{marginTop:'30px'}}>
             <h3 style={{color:'blue'}} id='documents'>Project related Links</h3>
-                <a style={{color:'blue', textDecoration:'underline'}} href={project.otherLinks}>{project.otherLinks}</a>
+                <a style={{color:'cyan', textDecoration:'underline'}} target='_blank' href={project.otherLinks}>{project.otherLinks}</a>
             </div>
 
             <div className="comment-section">
@@ -450,7 +451,7 @@ const MyProject = ({users}) => {
             
             </div>
             {
-                location.pathname ===  `/${userid}/${projectId}` ?
+                location.pathname ===  `/${userid}/${projectId}` || location.pathname === `/project/${projectId}` ?
                 <div className="user-comment">
                 <h3 style={{marginBottom:'20px'}}>Project Reviews</h3>
                 {

@@ -238,7 +238,7 @@ const AddProject = () => {
 
       
       
-      const url = 'https://campuscollab-backend.onrender.com/projects/uploads';
+      const url = 'http://localhost:8000/projects/uploads';
       const response = await fetch(url, {
         method:'POST',
         headers:{
@@ -251,7 +251,7 @@ const AddProject = () => {
       
       const {success, error, message} = result;
       if(success){
-      
+        setLoading(false);
 
           Swal.fire({
             title: "Project uploaded successfully!",

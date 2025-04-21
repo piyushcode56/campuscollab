@@ -10,7 +10,7 @@ const Reviews = () => {
     const {projectId} = useParams();
     const fetchComments = async()=>{
         try{
-            const url = `https://campuscollab-backend.onrender.com/comments/all-comment`;
+            const url = `http://localhost:8000/comments/all-comment`;
             const response = await fetch(url, {
                 method:'GET',
                 headers:{

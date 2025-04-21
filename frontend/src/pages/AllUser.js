@@ -40,7 +40,7 @@ const AllUser = ({users}) => {
 
     async function removeUser(userid){
       try{
-        const url = 'https://campuscollab-backend.onrender.com/user/remove/user';
+        const url = 'http://localhost:8000/user/remove/user';
         const response = await fetch(url, {
           method:'DELETE',
           headers:{
@@ -79,7 +79,7 @@ const AllUser = ({users}) => {
 
     async function blockUser(userid){
       try{
-        const url = 'https://campuscollab-backend.onrender.com/user/block/user';
+        const url = 'http://localhost:8000/user/block/user';
         const response = await fetch(url, {
           method:'PUT',
           headers:{
@@ -120,7 +120,7 @@ const AllUser = ({users}) => {
 
     async function unblockUser(userid){
       try{
-        const url = 'https://campuscollab-backend.onrender.com/user/unblock/user';
+        const url = 'http://localhost:8000/user/unblock/user';
         const response = await fetch(url, {
           method:'PUT',
           headers:{

@@ -12,7 +12,7 @@ const MyProjects = () => {
     const id = localStorage.getItem('userId');
     const fetchProjects = async() => {
         try{
-            const url = `https://campuscollab-backend.onrender.com/projects/myprojects/${id}`;
+            const url = `http://localhost:8000/projects/myprojects/${id}`;
             const response = await fetch(url, {
                 method:'GET',
                 headers:{
@@ -92,7 +92,7 @@ const MyProjects = () => {
                     {
                         project && project.image
                         ?
-                       <img src={`https://campuscollab-backend.onrender.com/uploads/${project.image.replace(/\\/g, '/').replace(/^uploads\//, '')}`} alt="" />
+                       <img src={project.image} alt="" />
                         :
                         <img src={projectImage} alt="" />
                     }
@@ -121,7 +121,7 @@ const MyProjects = () => {
                     {
                         project && project.image
                         ?
-                       <img src={`https://campuscollab-backend.onrender.com/uploads/${project.image.replace(/\\/g, '/').replace(/^uploads\//, '')}`} alt="" />
+                       <img src={project.image} alt="" />
                         :
                         <img src={projectImage} alt="" />
                     }

@@ -8,7 +8,7 @@ const Favourites = () => {
     const id = localStorage.getItem('userId');
     const fetchFavourites = async() => {
         try{
-            const url = `https://campuscollab-backend.onrender.com/user/favourites/${id}`;
+            const url = `http://localhost:8000/user/favourites/${id}`;
             const response = await fetch(url, {
                 method:'GET',
                 headers:{
@@ -24,7 +24,7 @@ const Favourites = () => {
     }
     const removeFavourite = async(projectid) => {
         try{
-            const url = 'https://campuscollab-backend.onrender.com/user/remove-favourites';
+            const url = 'http://localhost:8000/user/remove-favourites';
             const response = await fetch(url, {
                 method:'DELETE',
                 headers:{
