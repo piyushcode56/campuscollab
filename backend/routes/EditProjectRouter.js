@@ -48,24 +48,38 @@ router.post('/edit/project/:projectid', updatedUpload.array('editedFiles', 15), 
     const parsedProjectDevelopers = typeof projectDevelopers === 'string' ? JSON.parse(projectDevelopers):
     projectDevelopers;
     const parsedExistingFiles = typeof existingFiles === 'string' ? JSON.parse(existingFiles) : existingFiles;
-    const cloudinary_uploads = async(filePath, resourceType = 'raw') => {
-        const result = await cloudinary.uploader.upload(filePath,{
-            resource_type:resourceType,
-            folder:'projects_documents'
-        })
-        return result;
-    }
+    const cloudinary_uploads = async (filePath, mimetype) => {
+                const resourceType = mimetype === 'application/pdf' ? 'raw' : 'auto';
+            
+                const result = await cloudinary.uploader.upload(filePath, {
+                    resource_type: resourceType,
+                    folder: 'projects_documents',
+                    use_filename: true,
+                    unique_filename: false
+                });
+            
+                const downloadUrl = result.secure_url.replace('/upload/', '/upload/fl_attachment/');
+            
+                return {
+                    fileUrl: downloadUrl,
+                    original_filename: result.original_filename,
+                    fileSize: result.bytes,
+                    mimetype: result.resource_type,
+                };
+            };
 
-    const uploadedFiles = [];
-    for(let file of req.files || []){
-        const upload_result  = await cloudinary_uploads(file.path, 'raw');
-        uploadedFiles.push({
-            fileName: file.originalname,
-            fileSize: file.size,
-            fileUrl: upload_result.secure_url,
-            fileType: file.mimetype
-        })
-    }
+    
+
+            const uploadedFiles = [];
+            for(let file of req.files || []){
+                const cloudResult = await cloudinary_uploads(file.path, file.mimetype, 'raw');
+                uploadedFiles.push({
+                    fileName: file.originalname,
+                    fileSize: file.size,
+                    fileUrl: cloudResult.fileUrl,
+                    fileType: file.mimetype
+                })
+            }
 
     const combinedFiles = [...parsedExistingFiles, ...uploadedFiles];
     if(parsedProjectDevelopers && Object.keys(parsedProjectDevelopers).length > 0) {
