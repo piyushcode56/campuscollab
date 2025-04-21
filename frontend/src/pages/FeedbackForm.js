@@ -5,7 +5,7 @@ const FeedbackForm = () => {
 
     <div style={{textAlign:'center'}}>
         <p>Kindly click on link and fill the feedback form</p>
-      <a style={{color:'blue', textDecoration:'underline'}} href="https://forms.gle/tJ3FwHoTgdXNRd8S8">https://forms.gle/tJ3FwHoTgdXNRd8S8</a>
+      <a style={{color:'blue', textDecoration:'underline'}} target="_blank" href="https://forms.gle/tJ3FwHoTgdXNRd8S8">https://forms.gle/tJ3FwHoTgdXNRd8S8</a>
     </div>
   )
 }
