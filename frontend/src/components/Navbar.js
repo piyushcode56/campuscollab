@@ -77,6 +77,7 @@ const Navbar = () => {
                  <Link to={'/login'}><a href="/login">Login</a></Link>
                  <Link to={'/signup'}><a href="/signup">Signup</a></Link>
                  <Link to={'/favourites'}><a href="/signup">Favourites</a></Link>
+    <Link to={'/campuscollab/feedback-form'}><a href="/signup">Feedback</a></Link>
                 </ul>
             </div>
             <div className="navbar_third_section">
