@@ -49,8 +49,7 @@
     text-transform: capitalize;
   }
   
-  .navbar_second_section ul, 
-  .admin-class ul {
+  .navbar_second_section ul {
     display: flex;
     list-style: none;
     margin: 0;
@@ -58,8 +57,7 @@
     gap: 1.5rem;
   }
   
-  .navbar_second_section a, 
-  .admin-class a {
+  .navbar_second_section a{
     text-decoration: none;
     color: white;
     font-weight: 500;
@@ -69,8 +67,7 @@
     transition: all 0.3s ease;
   }
   
-  .navbar_second_section a::after, 
-  .admin-class a::after {
+  .navbar_second_section a::after{
     content: '';
     position: absolute;
     width: 0;
@@ -81,13 +78,11 @@
     transition: width 0.3s ease;
   }
   
-  .navbar_second_section a:hover, 
-  .admin-class a:hover {
+  .navbar_second_section a:hover{
     color: #3498db;
   }
   
-  .navbar_second_section a:hover::after, 
-  .admin-class a:hover::after {
+  .navbar_second_section a:hover::after {
     width: 100%;
   }
   
@@ -114,8 +109,7 @@
       padding: 1rem;
     }
     
-    .navbar_second_section ul, 
-    .admin-class ul {
+    .navbar_second_section ul {
       gap: 1rem;
     }
   }
@@ -136,21 +130,18 @@
       text-align: center;
     }
     
-    .navbar_second_section ul, 
-    .admin-class ul {
+    .navbar_second_section ul {
       flex-direction: column;
       gap: 0.5rem;
     }
     
-    .navbar_second_section a, 
-    .admin-class a {
+    .navbar_second_section a {
       display: block;
       padding: 0.5rem;
       border-radius: 4px;
     }
     
-    .navbar_second_section a:hover, 
-    .admin-class a:hover {
+    .navbar_second_section a:hover {
       background-color: #f8f9fa;
     }
     
@@ -170,8 +161,7 @@
       font-size: 1rem;
     }
     
-    .navbar_second_section a, 
-    .admin-class a {
+    .navbar_second_section a{
       font-size: 0.9rem;
     }
     
