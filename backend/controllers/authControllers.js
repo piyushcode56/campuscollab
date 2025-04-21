@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 const {sendEmail, sendWelcomeMessage, resetPasswordEmailOtp} = require('../middlewares/Email.js');
 const Project = require('../models/ProjectSchema.js');
