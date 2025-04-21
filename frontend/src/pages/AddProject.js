@@ -66,7 +66,7 @@ const AddProject = ({projects}) => {
 
   function handleFeedbackSection(){
     if(userProjects.length > 0){
-      navigate('/campuscollab/feedback-form')
+      return navigate('/campuscollab/feedback-form')
     }
     else{
       navigate('/addprojects')
