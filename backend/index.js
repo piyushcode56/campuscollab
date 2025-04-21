@@ -11,7 +11,9 @@ const commentRouter = require('./routes/CommentRouter.js');
 app.use(bodyParser.json())
 const cors = require('cors');
 const path = require('path');
-app.use(cors());
+app.use(cors({
+  origin: 'https://campuscollab.onrender.com'
+}));
 app.use(express.urlencoded({ extended: true })); 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 // app.use('/uploads', express.static(path.join(__dirname, 'uploads')));

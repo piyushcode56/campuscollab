@@ -387,7 +387,7 @@ const AddProject = () => {
             ?
             <div className="title-image ">
                 <img src={image.url} width={200} alt="" onClick={()=>handleMediaModal(image.url, 'image')}/>
-                <i class='fa-solid fa-x cancel-button' onClick={()=>handleMediaCancel(image.url, 'singleImage')}></i>
+                <i class='fa-solid fa-x ' onClick={()=>handleMediaCancel(image.url, 'singleImage')}></i>
               </div>
               :
               ''
