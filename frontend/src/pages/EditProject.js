@@ -55,7 +55,7 @@ const EditProject = () => {
     ]
     const fetchProjectData = async() => {
         try{
-            const url = `http://localhost:8000/projects/editprojectdata/${projectId}`;
+            const url = `https://campuscollab-backend.onrender.com/projects/editprojectdata/${projectId}`;
             const response = await fetch(url, {
                 method:'GET',
                 headers:{
@@ -283,7 +283,7 @@ const EditProject = () => {
                 formData.append('editedFiles', document.file)
             })
 
-            const url = `http://localhost:8000/editproject/edit/project/${projectId}`;
+            const url = `https://campuscollab-backend.onrender.com/editproject/edit/project/${projectId}`;
             const response = await fetch(url, {
                 method:'POST',
                 headers:{
@@ -362,7 +362,7 @@ const EditProject = () => {
   existingFiles.files.map((file) => {
     if (file.fileType.includes('image')) {
       const parsedUrl = file.fileUrl.replace(/\\/g, '/').replace(/^uploads\//, '');
-      const imageUrl = `http://localhost:8000/uploads/${parsedUrl}`;
+      const imageUrl = `https://campuscollab-backend.onrender.com/uploads/${parsedUrl}`;
       return (
         <div className="images" key={file.fileUrl}>
           <img width={200} src={imageUrl} alt="Uploaded Image" />

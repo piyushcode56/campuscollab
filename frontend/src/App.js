@@ -37,7 +37,7 @@ const App = () => {
   const [userProjects, setUserProjects] = useState();
   async function fetchAdmin() {
     try{
-      const url = 'http://localhost:8000/user/admin/users';
+      const url = 'https://campuscollab-backend.onrender.com/user/admin/users';
       const response = await fetch(url, {
         method:'GET',
         headers:{
@@ -59,7 +59,7 @@ const App = () => {
 
   async function fetchProjects(){
     try{
-      const url = 'http://localhost:8000/projects/allprojects';
+      const url = 'https://campuscollab-backend.onrender.com/projects/allprojects';
       const response = await fetch(url, {
         method:'GET',
         headers:{

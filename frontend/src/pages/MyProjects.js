@@ -12,7 +12,7 @@ const MyProjects = () => {
     const id = localStorage.getItem('userId');
     const fetchProjects = async() => {
         try{
-            const url = `http://localhost:8000/projects/myprojects/${id}`;
+            const url = `https://campuscollab-backend.onrender.com/projects/myprojects/${id}`;
             const response = await fetch(url, {
                 method:'GET',
                 headers:{
