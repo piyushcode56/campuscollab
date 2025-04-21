@@ -103,7 +103,7 @@ const App = () => {
         <Route element={<ProtectedRoute/>}>
         <Route path='/' element={<HomePage users={users}/>}/>
         <Route path='/myprojects' element={<MyProjects/>}/>
-        <Route path='/addprojects' element={<AddProject/>}/>
+        <Route path='/addprojects' element={<AddProject projects={projects}/>}/>
         <Route path='/favourites' element={<Favourites/>}/>
         <Route path='/campuscollab/search' element={<SearchUser users={users}/>}/>
         </Route>
