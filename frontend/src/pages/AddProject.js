@@ -5,7 +5,7 @@ import { ToastContainer } from 'react-toastify';
 import { useRef } from 'react';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
-const AddProject = () => {
+const AddProject = ({projects}) => {
   const navigate = useNavigate();
   const fileInputRef = useRef();
   const imageRef = useRef(null);
@@ -18,6 +18,7 @@ const AddProject = () => {
   const [documents, setDocuments] = useState([]);
   const [modalType, setModalType] = useState();
   const [modalContent, setModalContent] = useState();
+  const [userProjects, setUserProjects] = useState([]);
   const userid = localStorage.getItem('userId');
   const [loading, setLoading] = useState(false);
   const [projectData, setProjectData] = useState({
@@ -53,6 +54,20 @@ const AddProject = () => {
       ...prevData,
       [name]:value
     }))
+  }
+
+ 
+    const userSpecificProjects = projects && projects.filter((project) => project.user === userid);
+    setUserProjects(userSpecificProjects);
+
+  function handleFeedbackSection(){
+    if(userProjects.length > 0){
+      navigate('/campuscollab/feedback-form')
+    }
+    else{
+      navigate('/addprojects')
+    }
+
   }
 
   const handleDevelopers = (e) =>{
@@ -262,6 +277,7 @@ const AddProject = () => {
             if (result.isConfirmed) {
               window.location.reload();
               navigate('/addprojects');
+              handleFeedbackSection();
             } 
           });
         
