@@ -226,6 +226,7 @@ const EditProject = () => {
     }
     const projectUpdated = async() => {
         try{
+            console.log("edit button pressed");
             const formData = new FormData();
             formData.append('existingProjectDetails', JSON.stringify({
                 name:existingFiles.name,
