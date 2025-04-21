@@ -23,6 +23,7 @@ import UserBasedProject from './pages/UserBasedProject';
 import OtpComponent from './components/OtpComponent';
 import ResetPassword from './components/ResetPassword';
 import EditProject from './pages/EditProject';
+import FeedbackForm from './pages/FeedbackForm';
 import Favourites from './pages/Favourites';
 import Footer from './components/Footer';
 import FavouriteProject from './pages/FavouriteProject';
