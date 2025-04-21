@@ -6,7 +6,7 @@ const fs = require('fs');
 const Project = require('../models/ProjectSchema');
 const ensureUserAuthenticated = require('../middlewares/userAuthentication');
 const User = require('../models/User')
-
+const cloudinary = require('../utils/cloudinary');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -47,6 +47,7 @@ router.post('/uploads', upload.fields([
     {name:'image', maxCount:1}
 ]), ensureUserAuthenticated, async(req, res) => {
     try{
+        console.log("project uploaded is started");
         const {projectData, projectDevelopers, existingFiles} = req.body;
         // console.log(projectData);
         const parsedProjectData = typeof projectData === 'string' ? JSON.parse(projectData) : projectData
@@ -56,15 +57,41 @@ router.post('/uploads', upload.fields([
         if(userdata.blocked){
             return res.status(200).json({message:'You are blocked by admin'})
         }
-        // console.log(parsedProjectDevelopers);
-        const files = (req.files['files'] || []).map((file) => ({
-            fileName:file.originalname,
-            fileSize:file.size,
-            fileUrl:file.path,
-            fileType:file.mimetype
-        }))
-       
-        const image = req.files['image']?.[0]?.path;
+        const cloudinary_uploads = async (filePath, mimetype) => {
+            const resourceType = mimetype === 'application/pdf' ? 'raw' : 'auto';
+        
+            const result = await cloudinary.uploader.upload(filePath, {
+                resource_type: resourceType,
+                folder: 'projects_documents',
+                use_filename: true,
+                unique_filename: false
+            });
+        
+            const downloadUrl = result.secure_url.replace('/upload/', '/upload/fl_attachment/');
+        
+            return {
+                fileUrl: downloadUrl,
+                original_filename: result.original_filename,
+                fileSize: result.bytes,
+                mimetype: result.resource_type,
+            };
+        };
+        const files = [];
+        for(let file of req.files['files'] || []){
+            const cloudResult = await cloudinary_uploads(file.path, file.mimetype, 'raw');
+            files.push({
+                fileName: file.originalname,
+                fileSize: file.size,
+                fileUrl: cloudResult.fileUrl,
+                fileType: file.mimetype
+            })
+        }
+
+        let image = '';
+        if(req.files['image'] && req.files['image'][0]){
+            const imageUpload = await cloudinary_uploads(req.files['image'][0].path, 'image');
+            image  = imageUpload.secure_url;
+        }
         
         // let projectDetails = {
         //     user:req.user.id,

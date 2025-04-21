@@ -5,7 +5,7 @@ const path = require('path');
 const fs = require('fs');
 const Project = require('../models/ProjectSchema');
 const ensureUserAuthenticated = require('../middlewares/userAuthentication')
-
+const cloudinary = require('../utils/cloudinary');
 const storage = multer.diskStorage({
     destination:(req, file, cb)=>{
         const dir = 'uploads/';
@@ -48,12 +48,24 @@ router.post('/edit/project/:projectid', updatedUpload.array('editedFiles', 15), 
     const parsedProjectDevelopers = typeof projectDevelopers === 'string' ? JSON.parse(projectDevelopers):
     projectDevelopers;
     const parsedExistingFiles = typeof existingFiles === 'string' ? JSON.parse(existingFiles) : existingFiles;
-    const uploadedFiles = req.files.map((file) => ({
-        fileName: file.originalname,
-        fileSize: file.size,
-        fileUrl: file.path,
-        fileType: file.mimetype,
-    }))
+    const cloudinary_uploads = async(filePath, resourceType = 'raw') => {
+        const result = await cloudinary.uploader.upload(filePath,{
+            resource_type:resourceType,
+            folder:'projects_documents'
+        })
+        return result;
+    }
+
+    const uploadedFiles = [];
+    for(let file of req.files || []){
+        const upload_result  = await cloudinary_uploads(file.path, 'raw');
+        uploadedFiles.push({
+            fileName: file.originalname,
+            fileSize: file.size,
+            fileUrl: upload_result.secure_url,
+            fileType: file.mimetype
+        })
+    }
 
     const combinedFiles = [...parsedExistingFiles, ...uploadedFiles];
     if(parsedProjectDevelopers && Object.keys(parsedProjectDevelopers).length > 0) {

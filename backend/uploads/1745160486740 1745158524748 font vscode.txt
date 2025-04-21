@@ -1,0 +1,18 @@
+Consolas,'Courier New', monospace
+'Ubuntu Mono', monospace
+
+2223DTR1001308956
+
+{
+  "_id": {
+    "$oid": "676d4dc9c0e319ab63addc15"
+  },
+  "name": "piyush",
+  "age": 21,
+  "hobbies": [
+    "travelling",
+    "running"
+  ]
+}
+
+
