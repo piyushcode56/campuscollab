@@ -57,8 +57,12 @@ const AddProject = ({projects}) => {
   }
 
  
-    const userSpecificProjects = projects && projects.filter((project) => project.user === userid);
+    useEffect(() => {
+  if (projects && userid) {
+    const userSpecificProjects = projects.filter((project) => project.user === userid);
     setUserProjects(userSpecificProjects);
+  }
+}, [projects, userid]);
 
   function handleFeedbackSection(){
     if(userProjects.length > 0){
